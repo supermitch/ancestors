@@ -1,102 +1,45 @@
 package com.mitch.ancestors;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.Game;
+import com.mitch.ancestors.screens.MenuScreen;
+import com.mitch.ancestors.screens.PauseScreen;
+import com.mitch.ancestors.screens.SplashScreen;
+import com.mitch.ancestors.screens.WorldScreen;
 
 public class Ancestors extends Game {
 	
-	SpriteBatch batch;
-	BitmapFont font;
+	public SpriteBatch batch;
+	public BitmapFont font;
 	
-	WorldScreen worldScreen;
-	PauseScreen pauseScreen;
-	MenuScreen menuScreen;
+	public WorldScreen worldScreen;
+	public PauseScreen pauseScreen;
+	public MenuScreen menuScreen;
 	
 	public void create() {
+
+		font = new BitmapFont();	// Use Arial default
 		batch = new SpriteBatch();
-		font = new BitmapFont();
+		
 		Assets.load();
 		
 		worldScreen = new WorldScreen(this);
 		pauseScreen = new PauseScreen(this);
 		menuScreen = new MenuScreen(this);
-		setScreen(new SplashScreen(this));
-	}
-	
-	public void dispose() {
-		batch.dispose();
-		font.dispose();
-	}
-	
-	public void resize(int width, int height) {
 		
+		setScreen(new SplashScreen(this));
 	}
 	
 	public void render() {
 		super.render();
 	}
 	
-	public void pause() {
-		
-	}
+	public void dispose() { }
 	
-	public void resume() {
-		
-	}
+	public void resize(int width, int height) { }
+	
+	public void pause() { }
+	
+	public void resume() { }
 }
-
-/*public class BlahAncestors implements ApplicationListener {
-	private OrthographicCamera camera;
-	private SpriteBatch batch;
-	private Texture texture;
-	private Sprite sprite;
-	
-	@Override
-	public void create() {		
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
-		
-		camera = new OrthographicCamera(1, h/w);
-		batch = new SpriteBatch();
-		
-		texture = new Texture(Gdx.files.internal("data/libgdx.png"));
-		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
-		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275);
-		
-		sprite = new Sprite(region);
-		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
-		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
-		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
-	}
-
-	@Override
-	public void dispose() {
-		batch.dispose();
-		texture.dispose();
-	}
-
-	@Override
-	public void render() {		
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		sprite.draw(batch);
-		batch.end();
-	}
-
-	@Override
-	public void resize(int width, int height) {
-	}
-
-	@Override
-	public void pause() {
-	}
-
-	@Override
-	public void resume() {
-	}
-}*/

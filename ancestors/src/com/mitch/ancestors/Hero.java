@@ -9,6 +9,7 @@ public class Hero {
 	public static final float HEIGHT = 1.0f;
 	public final float VELOCITY = 100.0f;
 
+	public String assetName;
 	public final Rectangle bounds;
 	public final Vector2 position;
 	public final Vector2 velocity;
@@ -17,6 +18,7 @@ public class Hero {
 		position = new Vector2(start_x, start_y);
 		bounds = new Rectangle(position.x - WIDTH/2, position.y - HEIGHT/2, WIDTH, HEIGHT);
 		velocity = new Vector2();
+		assetName = "hero_1";
 	}
 	
 	public void update (float deltaTime) {
