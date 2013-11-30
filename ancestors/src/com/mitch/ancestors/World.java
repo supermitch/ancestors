@@ -1,26 +1,30 @@
 package com.mitch.ancestors;
 
 import java.util.Random;
-
 import com.badlogic.gdx.utils.Array;
 
 public class World {
 	
 	public final Hero hero;
-	public final Monster slime;
-	public final Monster spider;
+	//public final Monster slime;
+	//public final Monster spider;
+	
+	Array<Monster> monsters = new Array<Monster>(false, 1);
+	
 	int[][] tiles;
 	
 	public World() {
 		this.hero = new Hero(0, 0);
-		this.slime = new Monster(20, 20, "slime");
-		this.spider = new Monster(50, 50, "spider");
+		monsters.add(new Monster(20, 20, "slime"));
+		monsters.add(new Monster(50, 50, "spider"));
 		loadTiles();
 	}
 	
 	public void update(float deltaTime) {
 		hero.update(deltaTime);
-		
+		for (Monster monster: monsters) {
+			monster.update(deltaTime);
+		}
 	}
 	
 	private void loadTiles() {

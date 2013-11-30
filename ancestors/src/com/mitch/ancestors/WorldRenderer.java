@@ -49,15 +49,16 @@ public class WorldRenderer {
 	}
 	
 	private void renderHero() {
-		batch.draw(Assets.hero_1, world.hero.position.x, world.hero.position.y);
+		batch.draw(world.hero.asset, world.hero.position.x, world.hero.position.y);
 	}
 	
 	private void renderHumans() {
 	}
 	
 	private void renderMonsters() {
-		batch.draw(Assets.slime_1, world.slime.position.x, world.slime.position.y);
-		batch.draw(Assets.spider_1, world.spider.position.x, world.spider.position.y);
+		for (Monster monster : world.monsters){
+			batch.draw(monster.asset, monster.position.x, monster.position.y);
+		}
 	}
 	
 	private void renderUI() {

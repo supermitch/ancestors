@@ -21,7 +21,6 @@ public class WorldScreen implements Screen {
 		
 		world = new World();
 		worldRenderer = new WorldRenderer(world);
-
 	}
 
 	@Override

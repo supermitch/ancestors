@@ -2,6 +2,7 @@ package com.mitch.ancestors;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.graphics.Texture;
 
 public class Monster {
 
@@ -9,7 +10,7 @@ public class Monster {
 	float HEIGHT;
 	float VELOCITY;
 
-	public String assetName;
+	public Texture asset;
 	public String species;
 	public final Rectangle bounds;
 	public final Vector2 position;
@@ -23,10 +24,10 @@ public class Monster {
 
 		species = _species;
 		if (species.equals("slime")) {
-			assetName = "slime_1";
+			asset = Assets.slime_1;
 			this.hp = 5;
 		} else if (species.equals("spider")) {
-			assetName = "spider_1";
+			asset = Assets.spider_1;
 			this.hp = 10;
 		}
 	}
