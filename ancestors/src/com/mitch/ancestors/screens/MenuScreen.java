@@ -8,60 +8,60 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mitch.ancestors.Ancestors;
 
 public class MenuScreen implements Screen {
-	
-	Ancestors game;
-	OrthographicCamera camera;
 
-	public MenuScreen(Ancestors my_game) {
-		this.game = my_game;
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 480, 320);
-	}
+    Ancestors game;
+    OrthographicCamera camera;
 
-	@Override
-	public void render(float delta) {
-		Gdx.gl.glClearColor(0.2f, 0.1f, 0, 1);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		
-		camera.update();
-		game.batch.setProjectionMatrix(camera.combined);
-		
-		game.batch.begin();
-		game.font.draw(game.batch, "Menu / Inventory", 200, 240);
-		game.batch.end();
-		
-		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
-			game.setScreen(game.worldScreen);
-		}
-	}
+    public MenuScreen(Ancestors my_game) {
+        this.game = my_game;
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, 480, 320);
+    }
 
-	@Override
-	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-	}
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(0.2f, 0.1f, 0, 1);
+        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
-	@Override
-	public void show() {
-		// TODO Auto-generated method stub
-	}
+        camera.update();
+        game.batch.setProjectionMatrix(camera.combined);
 
-	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-	}
+        game.batch.begin();
+        game.font.draw(game.batch, "Menu / Inventory", 200, 240);
+        game.batch.end();
 
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-	}
+        if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+            game.setScreen(game.worldScreen);
+        }
+    }
 
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-	}
+    @Override
+    public void resize(int width, int height) {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-	}
+    @Override
+    public void show() {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void hide() {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void pause() {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void resume() {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void dispose() {
+        // TODO Auto-generated method stub
+    }
 }
