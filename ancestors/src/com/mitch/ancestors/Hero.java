@@ -1,8 +1,8 @@
 package com.mitch.ancestors;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.graphics.Texture;
 
 public class Hero {
 
@@ -19,7 +19,7 @@ public class Hero {
 		position = new Vector2(start_x, start_y);
 		bounds = new Rectangle(position.x - WIDTH/2, position.y - HEIGHT/2, WIDTH, HEIGHT);
 		velocity = new Vector2();
-		asset = Assets.hero_1;
+		asset = Assets.humans.get("hero_1");
 	}
 	
 	public void update (float deltaTime) {

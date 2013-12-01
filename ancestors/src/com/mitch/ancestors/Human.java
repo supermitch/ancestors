@@ -4,32 +4,22 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.Texture;
 
-public class Monster {
+public class Human {
 
-	float WIDTH;
-	float HEIGHT;
-	float VELOCITY;
+	public static final float WIDTH = 1.0f;
+	public static final float HEIGHT = 1.0f;
+	public final float VELOCITY = 100.0f;
 
 	public String assetName;
-	public String species;
 	public final Rectangle bounds;
 	public final Vector2 position;
 	public final Vector2 velocity;
-	int hp;
 	
-	public Monster(float start_x, float start_y, String _species) {
+	public Human(float start_x, float start_y) {
 		position = new Vector2(start_x, start_y);
 		bounds = new Rectangle(position.x - WIDTH/2, position.y - HEIGHT/2, WIDTH, HEIGHT);
 		velocity = new Vector2();
-
-		species = _species;
-		if (species.equals("slime")) {
-			assetName = "slime_1";
-			this.hp = 5;
-		} else if (species.equals("spider")) {
-			assetName = "spider_1";
-			this.hp = 10;
-		}
+		assetName = "kid_1";
 	}
 	
 	public void update (float deltaTime) {

@@ -1,5 +1,7 @@
 package com.mitch.ancestors;
 
+import java.lang.Math;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -16,19 +18,27 @@ public class WorldRenderer {
 	
 	public WorldRenderer(World world) {
 		this.world = world;
+		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 480, 320);
+		camera.position.set(world.hero.position.x, world.hero.position.y, 0);
+		
 		font = new BitmapFont();	// Use Arial default
+		
 		batch = new SpriteBatch(5460);
+		
+		
 	}
 	
 	public void render() {
-
-		Gdx.gl.glClearColor(0, 0.2f, 0, 1);
+		
+		// Cam follow hero
+		camera.position.set(world.hero.position.x, world.hero.position.y, 0);
+		camera.update();
+		
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
-		//camera.update();
-	
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
@@ -43,6 +53,14 @@ public class WorldRenderer {
 	}
 	
 	private void renderMap() {
+		float x = world.hero.position.x;
+		float y = world.hero.position.y;
+		
+		for (Tile tile : world.tiles) {
+			if (Math.abs(tile.position.x - x) <= 240 + 20 && Math.abs(tile.position.y - y) <= 160 + 20) {
+				batch.draw(tile.asset, tile.position.x, tile.position.y);
+			}
+		}
 	}
 	
 	private void renderItems() {
@@ -57,7 +75,7 @@ public class WorldRenderer {
 	
 	private void renderMonsters() {
 		for (Monster monster : world.monsters){
-			batch.draw(monster.asset, monster.position.x, monster.position.y);
+			batch.draw(Assets.monsters.get(monster.assetName), monster.position.x, monster.position.y);
 		}
 	}
 	

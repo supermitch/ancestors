@@ -35,7 +35,10 @@ public class Ancestors extends Game {
 		super.render();
 	}
 	
-	public void dispose() { }
+	public void dispose() {
+		font.dispose();
+		batch.dispose();
+	}
 	
 	public void resize(int width, int height) { }
 	
