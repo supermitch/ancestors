@@ -2,7 +2,6 @@ package com.mitch.ancestors;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.graphics.Texture;
 
 public class Human {
 

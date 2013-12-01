@@ -41,18 +41,18 @@ public class Monster {
         if (species.equals("slime")) {
             assetName = "slime_1";
             hp = 5;
-            ACCEL = 200;
-            MAX_VELOCITY = 20.0f;
+            ACCEL = 20.0f;
+            MAX_VELOCITY = 15.0f;
             restTime = 0.2f;
             moveTime = 1.0f;
 
         } else if (species.equals("spider")) {
             assetName = "spider_1";
             hp = 10;
-            ACCEL = 500;
-            MAX_VELOCITY = 500.0f;
+            ACCEL = 500.0f;
+            MAX_VELOCITY = 100.0f;
             restTime = 3.0f;
-            moveTime = 3.0f;
+            moveTime = 1.0f;
         }
     }
 
@@ -64,7 +64,7 @@ public class Monster {
 
         actBehavior(deltaTime);
 
-        if (accel.len() > 0) {
+        if (accel.len() > 0.0f) {
             accel.scl(deltaTime);  // dv = a*dt
             velocity.add(accel.x, accel.y);  // vf = vi + dv
 
@@ -91,7 +91,9 @@ public class Monster {
                     accel.x = rand.nextFloat() * 2 - 1;  // -1 to 1
                     accel.y = rand.nextFloat() * 2 - 1;
                     accel.nor().scl(ACCEL);
-                    stateTime = 0;
+                    stateTime = 0.0f;
+                } else {
+                    // still resting...
                 }
                 break;
             case MOVING:
@@ -99,7 +101,11 @@ public class Monster {
                     state = RESTING;
                     accel.set(0, 0);
                     velocity.set(0, 0);
-                    stateTime = 0;
+                    stateTime = 0.0f;
+                } else {
+                    // still moving...
+                    // Continue accel'ing in current direction
+                    accel.set(velocity.x, velocity.y).nor().scl(ACCEL);
                 }
                 break;
             default: break;
