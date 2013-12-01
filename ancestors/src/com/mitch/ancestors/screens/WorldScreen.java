@@ -22,39 +22,24 @@ public class WorldScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		
+		processKeys();
 		update(delta);
 		worldRenderer.render();
-		
-		// Screen handling:
-		if (Gdx.input.isKeyPressed(Keys.P)) {
-			game.setScreen(game.pauseScreen);
-		} 
-		if (Gdx.input.isKeyPressed(Keys.M)) {
-			game.setScreen(game.menuScreen);
-		}
-		if (Gdx.input.isKeyPressed(Keys.Q)) {
-			Gdx.app.exit();
-		}
-		
-		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-			world.hero.velocity.x = -world.hero.VELOCITY;
-		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			world.hero.velocity.x = world.hero.VELOCITY;
-		} else {
-			world.hero.velocity.x = 0.0f;
-		}
-		
-		if (Gdx.input.isKeyPressed(Keys.UP)) {
-			world.hero.velocity.y = world.hero.VELOCITY;
-		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			world.hero.velocity.y = - world.hero.VELOCITY;
-		} else {
-			world.hero.velocity.y = 0.0f;
-		}
-		
 	}
 
+	/**
+	 * Screen handling related keyPresses
+	 */
+	void processKeys() {
+		if (Gdx.input.isKeyPressed(Keys.P)) {
+			game.setScreen(game.pauseScreen);
+		} else if (Gdx.input.isKeyPressed(Keys.M)) {
+			game.setScreen(game.menuScreen);
+		} else if (Gdx.input.isKeyPressed(Keys.Q)) {
+			Gdx.app.exit();
+		}
+	}
+	
 	public void update (float deltaTime) {
 		world.update(deltaTime);
 	}
