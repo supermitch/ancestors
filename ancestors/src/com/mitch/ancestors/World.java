@@ -16,18 +16,34 @@ public class World {
     public World() {
         this.hero = new Hero(240, 160);
 
+        items.add(new Item(25, 85, "key"));
+        items.add(new Item(10, 120, "sword"));
+
         monsters.add(new Monster(20, 20, "slime"));
         monsters.add(new Monster(50, 50, "spider"));
         monsters.add(new Monster(100, 100, "slime"));
+
+        humans.add(new Human(74, 38, "kid"));
 
         loadTiles();
     }
 
     public void update(float deltaTime) {
+
+        for (Tile tile: tiles) {
+            //tile.update();
+        }
+
         hero.update(deltaTime);
 
+        for (Item item: items) {
+            item.update(deltaTime);
+        }
         for (Monster monster: monsters) {
             monster.update(deltaTime);
+        }
+        for (Human human: humans) {
+            human.update(deltaTime);
         }
 
     }

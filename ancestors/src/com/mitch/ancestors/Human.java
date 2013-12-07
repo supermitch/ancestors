@@ -10,15 +10,21 @@ public class Human {
     public final float VELOCITY = 100.0f;
 
     public String assetName;
+    public String name;
     public final Rectangle bounds;
     public final Vector2 position;
     public final Vector2 velocity;
 
-    public Human(float start_x, float start_y) {
+    public Human(float start_x, float start_y, String name) {
         position = new Vector2(start_x, start_y);
-        bounds = new Rectangle(position.x - WIDTH/2, position.y - HEIGHT/2, WIDTH, HEIGHT);
+        bounds = new Rectangle(position.x - WIDTH/2,
+                               position.y - HEIGHT/2,
+                               WIDTH, HEIGHT);
         velocity = new Vector2();
-        assetName = "kid_1";
+        this.name = name;
+        if (name.equals("kid")) {
+            assetName = "kid_1";
+        }
     }
 
     public void update (float deltaTime) {

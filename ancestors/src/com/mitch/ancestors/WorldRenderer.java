@@ -43,10 +43,10 @@ public class WorldRenderer {
         batch.begin();
 
         renderMap();
-        renderItems();
         renderHero();
-        renderHumans();
+        renderItems();
         renderMonsters();
+        renderHumans();
         renderUI();
 
         batch.end();
@@ -64,13 +64,13 @@ public class WorldRenderer {
     }
 
     private void renderItems() {
+        for (Item item : world.items){
+            batch.draw(Assets.items.get(item.assetName), item.position.x, item.position.y);
+        }
     }
 
     private void renderHero() {
         batch.draw(world.hero.asset, world.hero.position.x, world.hero.position.y);
-    }
-
-    private void renderHumans() {
     }
 
     private void renderMonsters() {
@@ -79,6 +79,11 @@ public class WorldRenderer {
         }
     }
 
+    private void renderHumans() {
+        for (Human human : world.humans){
+            batch.draw(Assets.humans.get(human.assetName), human.position.x, human.position.y);
+        }
+    }
     private void renderUI() {
         font.draw(batch, "World Screen!", 200, 240);
     }
