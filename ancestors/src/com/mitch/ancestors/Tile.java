@@ -16,11 +16,12 @@ public class Tile {
     public final Rectangle bounds;
     public final Vector2 position;
 
-    public Tile(int x, int y, String _type) {
+    public Tile(int x, int y, String type) {
         position = new Vector2(x * 16, y * 16);
-        bounds = new Rectangle(position.x - WIDTH/2, position.y - HEIGHT/2, WIDTH, HEIGHT);	
-
-        tileType = _type;
+        bounds = new Rectangle(position.x - WIDTH/2,
+                               position.y - HEIGHT/2,
+                               WIDTH, HEIGHT);
+        tileType = type;
         if (tileType.equals("grass")) {
             this.asset = Assets.maps.get("grass_1");
             walkable = true;

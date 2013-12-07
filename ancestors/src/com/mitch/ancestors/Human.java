@@ -23,6 +23,10 @@ public class Human {
 
     public void update (float deltaTime) {
         position.add(velocity.x * deltaTime, velocity.y * deltaTime);
+        update_bounds(position);
+    }
+
+    public void update_bounds(Vector2 position) {
         bounds.x = position.x - bounds.width / 2;
         bounds.y = position.y - bounds.height / 2;
     }

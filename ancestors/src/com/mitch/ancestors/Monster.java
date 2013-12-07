@@ -77,8 +77,7 @@ public class Monster {
         position.add(velocity.x*deltaTime, velocity.y*deltaTime);  // d = d*dt
 
         // TODO: Move bounds first to check collisions
-        bounds.x = position.x - bounds.width / 2;
-        bounds.y = position.y - bounds.height / 2;
+        update_bounds(position);
     }
 
     public void actBehavior(float deltaTime) {
@@ -111,5 +110,10 @@ public class Monster {
             default: break;
         }
         stateTime += deltaTime;
+    }
+
+    public void update_bounds(Vector2 position) {
+        bounds.x = position.x - bounds.width / 2;
+        bounds.y = position.y - bounds.height / 2;
     }
 }

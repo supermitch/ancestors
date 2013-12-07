@@ -52,8 +52,7 @@ public class Hero {
         position.add(velocity.x * deltaTime, velocity.y * deltaTime);  // d = d*dt
 
         // TODO: Move bounds first to check collisions
-        bounds.x = position.x - bounds.width / 2;
-        bounds.y = position.y - bounds.height / 2;
+        update_bounds(position);
     }
 
     /**
@@ -77,5 +76,10 @@ public class Hero {
             velocity.y = 0.0f;
             accel.y = 0.0f;
         }
+    }
+
+    public void update_bounds(Vector2 position) {
+        bounds.x = position.x - bounds.width / 2;
+        bounds.y = position.y - bounds.height / 2;
     }
 }
