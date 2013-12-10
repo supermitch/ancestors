@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 public class WorldRenderer {
 
+    static boolean RENDER_BOUNDS = true;
     World world;
     OrthographicCamera camera;
     SpriteBatch batch;
@@ -45,6 +46,7 @@ public class WorldRenderer {
         batch.setProjectionMatrix(camera.combined);
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeType.Line);
+
         batch.begin();
 
         renderMap();
@@ -73,9 +75,11 @@ public class WorldRenderer {
         for (Item item : world.items){
             batch.draw(Assets.items.get(item.assetName),
                        item.position.x, item.position.y);
-            shapeRenderer.setColor(0, 1, 0, 1);
-            shapeRenderer.rect(item.position.x, item.position.y,
-                               item.WIDTH, item.HEIGHT);
+            if (RENDER_BOUNDS) {
+                shapeRenderer.setColor(0, 1, 0, 1);
+                shapeRenderer.rect(item.position.x, item.position.y,
+                        item.WIDTH, item.HEIGHT);
+            }
         }
     }
 

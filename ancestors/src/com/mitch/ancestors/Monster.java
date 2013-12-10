@@ -27,7 +27,7 @@ public class Monster extends Entity {
 
     public Monster(float start_x, float start_y, String _species) {
         position.set(start_x, start_y);
-        bounds.setCenter(position.x - WIDTH/2, position.y - HEIGHT/2);
+        bounds.setCenter(position);
         velocity = new Vector2();
         accel = new Vector2();
 
@@ -71,7 +71,7 @@ public class Monster extends Entity {
         position.add(velocity.x*deltaTime, velocity.y*deltaTime);  // d = d*dt
 
         // TODO: Move bounds first to check collisions
-        update_bounds(position);
+        bounds.setCenter(position);
     }
 
     public void actBehavior(float deltaTime) {
@@ -106,8 +106,4 @@ public class Monster extends Entity {
         stateTime += deltaTime;
     }
 
-    public void update_bounds(Vector2 position) {
-        bounds.x = position.x - bounds.width / 2;
-        bounds.y = position.y - bounds.height / 2;
-    }
 }

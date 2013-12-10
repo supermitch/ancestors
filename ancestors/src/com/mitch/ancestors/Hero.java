@@ -21,7 +21,7 @@ public class Hero extends Entity {
      */
     public Hero(float start_x, float start_y) {
         position.set(start_x, start_y);
-        bounds.setCenter(position.x - WIDTH/2, position.y - HEIGHT/2);
+        bounds.setCenter(position);
         velocity = new Vector2();
         accel = new Vector2();
         asset = Assets.humans.get("hero_1");
@@ -47,7 +47,7 @@ public class Hero extends Entity {
         position.add(velocity.x * deltaTime, velocity.y * deltaTime);  // d = d*dt
 
         // TODO: Move bounds first to check collisions
-        update_bounds(position);
+        bounds.setCenter(position);
     }
 
     /**
@@ -73,8 +73,4 @@ public class Hero extends Entity {
         }
     }
 
-    public void update_bounds(Vector2 position) {
-        bounds.x = position.x - bounds.width / 2;
-        bounds.y = position.y - bounds.height / 2;
-    }
 }

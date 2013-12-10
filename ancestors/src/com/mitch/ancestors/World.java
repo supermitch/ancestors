@@ -17,8 +17,8 @@ public class World {
     public World() {
         hero = new Hero(240, 160);
 
-        items.add(new Item(25, 85, "key"));
-        items.add(new Item(10, 120, "sword"));
+        items.add(new Item(250, 85, "key"));
+        items.add(new Item(190, 250, "sword"));
 
         monsters.add(new Monster(20, 20, "slime"));
         monsters.add(new Monster(50, 50, "spider"));

@@ -7,11 +7,10 @@ import com.badlogic.gdx.math.Vector2;
 public class Entity {
     public Texture asset;
 
-    public static float WIDTH = 16.0f;
-    public static float HEIGHT = 16.0f;
+    public float WIDTH = 16.0f;
+    public float HEIGHT = 16.0f;
 
-    public Vector2 position = new Vector2(0, 0);
-    public Rectangle bounds = new Rectangle(position.x - WIDTH/2,
-                                            position.y - HEIGHT/2,
+    public Vector2 position = new Vector2();
+    public Rectangle bounds = new Rectangle(0 - WIDTH/2, 0 - HEIGHT/2,
                                             WIDTH, HEIGHT);
 }

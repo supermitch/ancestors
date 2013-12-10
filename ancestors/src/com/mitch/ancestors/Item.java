@@ -1,17 +1,17 @@
 package com.mitch.ancestors;
 
-public class Item extends Entity {
+import com.badlogic.gdx.math.Vector2;
 
-    float VELOCITY;
+public class Item extends Entity {
 
     public String assetName;
     public String itemName;
 
     float weight;
 
-    public Item(float start_x, float start_y, String name) {
-        position.set(start_x, start_y);
-        bounds.setCenter(position.x - WIDTH/2, position.y - HEIGHT/2);
+    public Item(float x, float y, String name) {
+        position.set(x, y);
+        bounds.setCenter(position);
 
         itemName = name;
         if (itemName.equals("key")) {
@@ -25,5 +25,6 @@ public class Item extends Entity {
 
     public void update (float deltaTime) {
         // Can items move?
+        bounds.setCenter(position);
     }
 }

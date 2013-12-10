@@ -12,7 +12,7 @@ public class Human extends Entity {
 
     public Human(float start_x, float start_y, String name) {
         position.set(start_x, start_y);
-        bounds.setCenter(position.x - WIDTH/2, position.y - HEIGHT/2);
+        bounds.setCenter(position);
 
         velocity = new Vector2();
         this.name = name;
@@ -23,11 +23,7 @@ public class Human extends Entity {
 
     public void update (float deltaTime) {
         position.add(velocity.x * deltaTime, velocity.y * deltaTime);
-        update_bounds(position);
+        bounds.setCenter(position);
     }
 
-    public void update_bounds(Vector2 position) {
-        bounds.x = position.x - bounds.width / 2;
-        bounds.y = position.y - bounds.height / 2;
-    }
 }
