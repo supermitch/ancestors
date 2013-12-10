@@ -1,6 +1,7 @@
 package com.mitch.ancestors;
 
 import java.util.Random;
+
 import com.badlogic.gdx.utils.Array;
 
 public class World {
@@ -14,7 +15,7 @@ public class World {
 
 
     public World() {
-        this.hero = new Hero(240, 160);
+        hero = new Hero(240, 160);
 
         items.add(new Item(25, 85, "key"));
         items.add(new Item(10, 120, "sword"));
@@ -29,6 +30,8 @@ public class World {
     }
 
     public void update(float deltaTime) {
+
+        Collision.check(this);
 
         for (Tile tile: tiles) {
             //tile.update();

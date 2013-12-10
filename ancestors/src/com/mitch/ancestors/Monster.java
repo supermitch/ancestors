@@ -2,26 +2,20 @@ package com.mitch.ancestors;
 
 import java.util.Random;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.graphics.Texture;
 
-public class Monster {
+public class Monster extends Entity {
 
     // States
     static final int RESTING = 0;
     static final int MOVING = 1;
     static final int HUNTING = 2;
 
-    float WIDTH;
-    float HEIGHT;
     float MAX_VELOCITY;
     float ACCEL;
 
     public String assetName;
     public String species;
-    public Rectangle bounds;
-    public Vector2 position;
     public Vector2 velocity;
     Vector2 accel;
     int hp;
@@ -32,8 +26,8 @@ public class Monster {
     float moveTime;
 
     public Monster(float start_x, float start_y, String _species) {
-        position = new Vector2(start_x, start_y);
-        bounds = new Rectangle(position.x - WIDTH/2, position.y - HEIGHT/2, WIDTH, HEIGHT);
+        position.set(start_x, start_y);
+        bounds.setCenter(position.x - WIDTH/2, position.y - HEIGHT/2);
         velocity = new Vector2();
         accel = new Vector2();
 

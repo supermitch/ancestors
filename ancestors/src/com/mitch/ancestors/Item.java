@@ -1,26 +1,17 @@
 package com.mitch.ancestors;
 
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
+public class Item extends Entity {
 
-public class Item {
-
-    float WIDTH;
-    float HEIGHT;
     float VELOCITY;
 
     public String assetName;
     public String itemName;
-    public final Rectangle bounds;
-    public final Vector2 position;
 
     float weight;
 
     public Item(float start_x, float start_y, String name) {
-        position = new Vector2(start_x, start_y);
-        bounds = new Rectangle(position.x - WIDTH/2,
-                               position.y - HEIGHT/2,
-                               WIDTH, HEIGHT);
+        position.set(start_x, start_y);
+        bounds.setCenter(position.x - WIDTH/2, position.y - HEIGHT/2);
 
         itemName = name;
         if (itemName.equals("key")) {

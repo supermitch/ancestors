@@ -1,25 +1,19 @@
 package com.mitch.ancestors;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-public class Human {
+public class Human extends Entity {
 
-    public static final float WIDTH = 1.0f;
-    public static final float HEIGHT = 1.0f;
     public final float VELOCITY = 100.0f;
 
     public String assetName;
     public String name;
-    public final Rectangle bounds;
-    public final Vector2 position;
     public final Vector2 velocity;
 
     public Human(float start_x, float start_y, String name) {
-        position = new Vector2(start_x, start_y);
-        bounds = new Rectangle(position.x - WIDTH/2,
-                               position.y - HEIGHT/2,
-                               WIDTH, HEIGHT);
+        position.set(start_x, start_y);
+        bounds.setCenter(position.x - WIDTH/2, position.y - HEIGHT/2);
+
         velocity = new Vector2();
         this.name = name;
         if (name.equals("kid")) {
