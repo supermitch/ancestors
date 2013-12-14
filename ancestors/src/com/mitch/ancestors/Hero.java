@@ -73,4 +73,8 @@ public class Hero extends Entity {
         }
     }
 
+    public void pickup(Item item) {
+        item.getCollected();
+    }
+
 }

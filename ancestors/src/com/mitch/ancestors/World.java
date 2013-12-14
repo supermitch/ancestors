@@ -41,6 +41,7 @@ public class World {
 
         for (Item item: items) {
             item.update(deltaTime);
+            if (!item.inWorld) items.removeValue(item, true);
         }
         for (Monster monster: monsters) {
             monster.update(deltaTime);
