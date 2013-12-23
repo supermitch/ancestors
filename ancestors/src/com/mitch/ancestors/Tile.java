@@ -27,4 +27,8 @@ public class Tile extends Entity {
         }
     }
 
+    public void update(float deltaTime) {
+        // Do nothing
+    }
+
 }

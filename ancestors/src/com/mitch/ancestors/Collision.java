@@ -2,15 +2,23 @@ package com.mitch.ancestors;
 
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
 public class Collision {
 
     static Rectangle inter = new Rectangle();
+    static World world;
+    
+    public Collision(World world) {
+        this.world = world;
+    }
 
     public static void check(World _world) {
         int i = 0, j = 0;
 
         World world = _world;
+
         // Hero collisions
         for (Item item : world.items) {
             if (collisionCheck(world.hero, item)) {
@@ -18,10 +26,14 @@ public class Collision {
             }
         }
         for (Monster monster : world.monsters) {
-            collisionCheck(world.hero, monster);
+            if (collisionCheck(world.hero, monster)) {
+                // pass
+            }
         }
         for (Human human : world.humans) {
-            collisionCheck(world.hero, human);
+            if (collisionCheck(world.hero, human)) {
+                // pass
+            };
         }
 
         // Monster collisions
@@ -56,7 +68,6 @@ public class Collision {
 
     private static boolean collisionCheck(Entity obj1, Entity obj2) {
         if (Intersector.intersectRectangles(obj1.bounds, obj2.bounds, inter)) {
-            // Get object Classes for echo
             String _class1 = obj1.getClass().toString();
             String sub1 = _class1.substring(_class1.lastIndexOf('.') + 1);
             String _class2 = obj2.getClass().toString();
@@ -68,5 +79,19 @@ public class Collision {
         }
     }
 
+    public static Vector2 tryMove(Entity entity, Rectangle currentBounds, Vector2 deltaPos) {
+        System.out.println("Trying to move.");
+        Vector2 currentPos = new Vector2(0, 0);
+
+        Array<Entity> nearest = world.findNearestEntities(entity, currentBounds.getCenter(currentPos));
+        for (int i = 0; i < nearest.size; i++) {
+            if (Intersector.intersectRectangles(currentBounds,
+                                                nearest.get(i).bounds,
+                                                inter)) {
+                deltaPos = new Vector2(0, 0);
+            }
+        }
+        return deltaPos;
+    }
 
 }

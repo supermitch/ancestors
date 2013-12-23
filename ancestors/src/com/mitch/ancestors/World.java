@@ -3,6 +3,7 @@ package com.mitch.ancestors;
 import java.util.Random;
 
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.math.Vector2;
 
 public class World {
 
@@ -34,7 +35,7 @@ public class World {
         Collision.check(this);
 
         for (Tile tile: tiles) {
-            //tile.update();
+            tile.update(deltaTime);
         }
 
         hero.update(deltaTime);
@@ -43,11 +44,14 @@ public class World {
             item.update(deltaTime);
             if (!item.inWorld) items.removeValue(item, true);
         }
-        for (Monster monster: monsters) {
+        for (int i = 0; i < monsters.size; i++) {
+            Monster monster = monsters.get(i);
             monster.update(deltaTime);
+            if (!monster.inWorld) monsters.removeValue(monster, true);
         }
         for (Human human: humans) {
             human.update(deltaTime);
+            if (!human.inWorld) humans.removeValue(human, true);
         }
 
     }
@@ -62,5 +66,31 @@ public class World {
                 tiles.add(new Tile(x, y, tileTypes[rnd.nextInt(tileTypes.length)]));
             }
         }
+    }
+
+    public Array<Entity> findNearestEntities(Entity entity, Vector2 position) {
+        int count = 20;
+
+        Array<Entity> nearest = new Array<Entity>(false, count);
+
+        for (Item item: items) {
+            if (item == entity) continue;
+            if (nearest.size < 20) {
+                nearest.add(item);
+            }
+        }
+        for (Monster monster: monsters) {
+            if (monster == entity) continue;
+            if (nearest.size < 20) {
+                nearest.add(monster);
+            }
+        }
+        for (Human human: humans) {
+            if (human == entity) continue;
+            if (nearest.size < 20) {
+                nearest.add(human);
+            }
+        }
+        return nearest;
     }
 }

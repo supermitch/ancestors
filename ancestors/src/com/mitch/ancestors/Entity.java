@@ -13,4 +13,6 @@ public class Entity {
     public Vector2 position = new Vector2();
     public Rectangle bounds = new Rectangle(0 - WIDTH/2, 0 - HEIGHT/2,
                                             WIDTH, HEIGHT);
+
+    boolean inWorld = true;  // False to remove from world arrays
 }

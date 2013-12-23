@@ -51,15 +51,22 @@ public class Monster extends Entity {
     }
 
     /**
-     * Once per frame update of position
+     * Once per frame update of everything
      * @param deltaTime
      */
     public void update (float deltaTime) {
-
         actBehavior(deltaTime);
+        updatePosition(deltaTime);
+        bounds.setCenter(position);
+    }
 
-        if (accel.len() > 0.0f) {
-            accel.scl(deltaTime);  // dv = a*dt
+    /** Update position & velocity vectors given acceleration and deltaTime
+     * 
+     * @param deltaTime
+     */
+    private void updatePosition(float deltaTime) {
+        if (accel.len() > 0) {
+            accel.scl(deltaTime);  // dv = a * dt
             velocity.add(accel.x, accel.y);  // vf = vi + dv
 
             // Limit velocity to max
@@ -67,11 +74,17 @@ public class Monster extends Entity {
                 velocity.nor().scl(MAX_VELOCITY);
             }
         }
+        Vector2 deltaPos = new Vector2(velocity.x * deltaTime,
+                                    velocity.y * deltaTime);
+        //Vector2 nextPos = new Vector2(position).add(deltaPos);
 
-        position.add(velocity.x*deltaTime, velocity.y*deltaTime);  // d = d*dt
+        deltaPos = Collision.tryMove(this, bounds, deltaPos);
+        position.add(deltaPos);  // d = d*dt
+    }
 
-        // TODO: Move bounds first to check collisions
-        bounds.setCenter(position);
+    public void stopMoving() {
+        accel.set(0, 0);
+        velocity.set(0, 0);
     }
 
     public void actBehavior(float deltaTime) {

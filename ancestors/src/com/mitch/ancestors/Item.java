@@ -1,7 +1,5 @@
 package com.mitch.ancestors;
 
-import com.badlogic.gdx.math.Vector2;
-
 public class Item extends Entity {
 
     public String assetName;
@@ -9,8 +7,6 @@ public class Item extends Entity {
     public String pickupSound;
 
     float weight;
-
-    boolean inWorld = true;  // Appear in the world? (Set False to remove)
 
     public Item(float x, float y, String name) {
         position.set(x, y);

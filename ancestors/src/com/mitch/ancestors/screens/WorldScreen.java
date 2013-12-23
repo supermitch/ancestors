@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.mitch.ancestors.Ancestors;
+import com.mitch.ancestors.Collision;
 import com.mitch.ancestors.World;
 import com.mitch.ancestors.WorldRenderer;
 
@@ -12,12 +13,14 @@ public class WorldScreen implements Screen {
     Ancestors game;
     World world;
     WorldRenderer worldRenderer;
+    Collision collider;
 
     public WorldScreen(Ancestors my_game) {
         this.game = my_game;
 
         world = new World();
         worldRenderer = new WorldRenderer(world);
+        collider = new Collision(world);
     }
 
     @Override
