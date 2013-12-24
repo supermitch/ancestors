@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.mitch.ancestors.Ancestors;
+import com.mitch.ancestors.Assets;
 import com.mitch.ancestors.Collision;
 import com.mitch.ancestors.World;
 import com.mitch.ancestors.WorldRenderer;
@@ -39,6 +40,7 @@ public class WorldScreen implements Screen {
         } else if (Gdx.input.isKeyPressed(Keys.M)) {
             game.setScreen(game.menuScreen);
         } else if (Gdx.input.isKeyPressed(Keys.Q)) {
+            dispose();
             Gdx.app.exit();
         }
     }
@@ -79,7 +81,6 @@ public class WorldScreen implements Screen {
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
-
+        Assets.dispose();
     }
 }

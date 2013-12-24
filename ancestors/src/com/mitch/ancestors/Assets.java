@@ -47,4 +47,11 @@ public class Assets {
     public static Sound loadSound(String filename) {
         return Gdx.audio.newSound(Gdx.files.internal(filename));
     }
+
+    public static void dispose() {
+        System.out.println("Disposing assets...");
+        for (Sound sound: sounds.values()) {
+            sound.dispose();
+        }
+    }
 }
