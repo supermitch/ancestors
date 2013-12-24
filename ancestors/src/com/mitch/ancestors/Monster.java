@@ -75,11 +75,13 @@ public class Monster extends Entity {
             }
         }
         Vector2 deltaPos = new Vector2(velocity.x * deltaTime,
-                                    velocity.y * deltaTime);
-        //Vector2 nextPos = new Vector2(position).add(deltaPos);
+                velocity.y * deltaTime);
 
-        deltaPos = Collision.tryMove(this, bounds, deltaPos);
-        position.add(deltaPos);  // d = d*dt
+        Vector2 newDelta = Collision.tryMove(this, bounds, deltaPos);
+        if (!newDelta.equals(deltaPos)) {  // We hit something
+            stopMoving();
+        }
+        position.add(newDelta);  // d = d*dt
     }
 
     public void stopMoving() {

@@ -80,15 +80,59 @@ public class Collision {
     }
 
     public static Vector2 tryMove(Entity entity, Rectangle currentBounds, Vector2 deltaPos) {
-        System.out.println("Trying to move.");
-        Vector2 currentPos = new Vector2(0, 0);
 
-        Array<Entity> nearest = world.findNearestEntities(entity, currentBounds.getCenter(currentPos));
+        Vector2 currentPos = new Vector2();
+        currentBounds.getCenter(currentPos);
+        Rectangle newBounds = new Rectangle(currentBounds);
+        newBounds.setCenter(currentPos.add(deltaPos));
+
+        Array<Entity> nearest = world.findNearestEntities(entity,
+                currentBounds.getCenter(currentPos));
         for (int i = 0; i < nearest.size; i++) {
-            if (Intersector.intersectRectangles(currentBounds,
-                                                nearest.get(i).bounds,
+            Entity object = nearest.get(i);
+            if (Intersector.intersectRectangles(newBounds,
+                                                object.bounds,
                                                 inter)) {
-                deltaPos = new Vector2(0, 0);
+                if (!object.walkable) {
+                    // Need to extrapolate to next position
+                    float dX = deltaPos.x;
+                    float dY = deltaPos.y;
+                    float objEdge = 0.0f;
+                    float entEdge = 0.0f;
+
+                    System.out.println("[x: " + dX + "][y: " + dY + "]");
+
+                    float gapX = 0.0f;
+                    if (dX > 0.0) {
+                        objEdge = object.bounds.x;
+                        entEdge = currentBounds.x + currentBounds.getWidth();
+                        gapX = objEdge - entEdge;
+                        if (gapX < 0.0) gapX = 0.0f;
+                    } else if (dX < 0.0) {
+                        objEdge = object.bounds.x + object.bounds.getWidth();
+                        entEdge = currentBounds.x;
+                        gapX = objEdge - entEdge;
+                        if (gapX > 0.0) gapX = 0.0f;
+                    }
+                    System.out.println("objEdge: " + objEdge + " | entEdge: " + entEdge);
+                    float gapY = 0.0f;
+                    if (dY > 0.0) {
+                        objEdge = object.bounds.y;
+                        entEdge = currentBounds.y + currentBounds.getHeight();
+                        gapY = objEdge - entEdge;
+                        if (gapY < 0.0) gapY = 0.0f;
+                    } else if (dY < 0.0) {
+                        objEdge = object.bounds.y + object.bounds.getHeight();
+                        entEdge = currentBounds.y;
+                        gapY = objEdge - entEdge;
+                       if (gapY > 0.0) gapY = 0.0f;
+                    }
+                    System.out.println("currentBounds: " + currentBounds);
+                    System.out.println("object bounds: " + object.bounds);
+                    System.out.println("objEdge: " + objEdge + " | entEdge: " + entEdge);
+                    deltaPos = new Vector2(gapX, gapY);
+                    System.out.println("deltaPos: " + deltaPos);
+                }
             }
         }
         return deltaPos;

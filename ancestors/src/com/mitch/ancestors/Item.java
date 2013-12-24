@@ -11,6 +11,7 @@ public class Item extends Entity {
     public Item(float x, float y, String name) {
         position.set(x, y);
         bounds.setCenter(position);
+        walkable = true;
 
         itemName = name;
         if (itemName.equals("key")) {

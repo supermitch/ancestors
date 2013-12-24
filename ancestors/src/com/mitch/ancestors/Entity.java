@@ -15,4 +15,5 @@ public class Entity {
                                             WIDTH, HEIGHT);
 
     boolean inWorld = true;  // False to remove from world arrays
+    boolean walkable = false;  // Can't walk over it
 }

@@ -73,21 +73,25 @@ public class World {
 
         Array<Entity> nearest = new Array<Entity>(false, count);
 
+        if (hero != entity) {
+            nearest.add(hero);
+        }
+
         for (Item item: items) {
             if (item == entity) continue;
-            if (nearest.size < 20) {
+            if (nearest.size < count) {
                 nearest.add(item);
             }
         }
         for (Monster monster: monsters) {
             if (monster == entity) continue;
-            if (nearest.size < 20) {
+            if (nearest.size < count) {
                 nearest.add(monster);
             }
         }
         for (Human human: humans) {
             if (human == entity) continue;
-            if (nearest.size < 20) {
+            if (nearest.size < count) {
                 nearest.add(human);
             }
         }
